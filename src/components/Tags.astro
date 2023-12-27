@@ -1,0 +1,30 @@
+---
+const { tags, slug } = Astro.props;
+---
+
+<div class="flex gap-4">
+  {
+    Object.entries(tags)
+      .sort()
+      .map(async ([tag, number]) => {
+        if (tag == slug) {
+          return (
+            <div class="border bg-blue-500 text-white px-5 py-2 rounded-full">
+              {tag} ({number})
+            </div>
+          );
+        } else {
+          return (
+            <a
+              class="no-underline text-default hover:no-underline hover:text-default"
+              href={`/recipes/tags/${tag}/`}
+            >
+              <div class="border bg-gray-200 px-5 py-2 rounded-full ">
+                {tag} ({number})
+              </div>
+            </a>
+          );
+        }
+      })
+  }
+</div>

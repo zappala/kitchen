@@ -1,0 +1,11 @@
+---
+// taken from https://danidiaztech.com/create-astro-search-component/
+import { getCollection } from "astro:content";
+
+import Search from "./Search";
+
+const posts = await getCollection("recipes");
+// const posts = allPosts.filter((post) => !post.data.draft);
+---
+
+<Search client:load searchList={posts} />

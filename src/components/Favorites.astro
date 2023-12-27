@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../layouts/Layout.astro";
+
+//import Set from "./Set";
+//import Search from "./Search";
+// import Search2 from "./Search2";
+
+const favorites = await getCollection("recipes", ({ data }) => {
+  return data.favorite == true;
+});
+---
+
+<section>
+  <div class="grid grid-cols-2 gap-8">
+    {
+      favorites.map((post) => (
+        <a class="no-underline " href={`/recipes/${post.slug}/`}>
+          <img src={post.data.image} alt="" />
+          <h4 class="w-full  z-10 py-2 bg-white text-default text-center text-lg">
+            {post.data.title}
+          </h4>
+        </a>
+      ))
+    }
+  </div>
+</section>

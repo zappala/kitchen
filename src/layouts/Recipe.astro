@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "./Layout.astro";
+
+import FormattedDate from "../components/FormattedDate.astro";
+
+type Props = CollectionEntry<"recipes">["data"];
+
+const { title, body, date, image } = Astro.props;
+---
+
+<Layout>
+  <article>
+    <div class="hero-image">
+      {image && <img src={image} alt="" />}
+    </div>
+    <div class="prose">
+      <div class="title">
+        <div class="date">
+          <!-- <FormattedDate date={date} /> -->
+        </div>
+        <h1>{title}</h1>
+        <hr />
+      </div>
+      <slot />
+    </div>
+  </article>
+</Layout>

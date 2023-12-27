@@ -1,0 +1,68 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Tags from "../../../components/Tags.astro";
+
+import { getCollection } from "astro:content";
+
+export const prerender = true;
+const { slug } = Astro.params;
+
+const recipes = await getCollection("recipes");
+
+const tags = recipes
+  .map((recipe) => recipe.data.tags)
+  .flat()
+  .reduce<{ [key: string]: number }>(function (result, c) {
+    var count = result[c] || 0;
+    result[c] = count + 1;
+    return result;
+  }, {});
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return [...new Set(recipes.map((recipe) => recipe.data.tags).flat())].map(
+    (tag) => ({
+      params: { slug: tag },
+    })
+  );
+}
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+const allRecipesWithTag = await getCollection("recipes", (recipe) =>
+  recipe.data.tags.some((tag) => tag === slug)
+);
+if (allRecipesWithTag.length === 0) {
+  return Astro.redirect("/404");
+}
+---
+
+<Layout>
+  <section>
+    {(<Tags tags={tags} slug={slug} />)}
+    <h1 class="text-2xl font-bold mb-6">
+      {slug} recipes
+    </h1>
+
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 items-start auto-rows-min mt-4"
+    >
+      {
+        allRecipesWithTag.map(async (post, i) => {
+          const { remarkPluginFrontmatter } = await post.render();
+
+          return (
+            <a class="no-underline relative" href={`/recipes/${post.slug}/`}>
+              <img src={post.data.image} alt="" />
+              <h4 class="w-full opacity-80 z-10 py-2 bg-white text-default text-center text-lg">
+                {post.data.title}
+              </h4>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+</Layout>

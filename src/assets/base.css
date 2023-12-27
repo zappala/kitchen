@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply leading-6;
+    @apply mb-10;
+  }
+  h1 {
+    @apply text-3xl;
+    @apply mt-10;
+    @apply font-merriweather;
+  }
+
+  h2 {
+    @apply text-xl;
+    @apply mt-10;
+  }
+
+  h3 {
+    @apply after:content-['\0020\2015'];
+    @apply before:content-['\2015\0020'];
+    @apply mt-10;
+  }
+
+  p {
+    @apply mt-5;
+  }
+
+  ul {
+    @apply mt-3;
+  }
+
+  li {
+    @apply list-disc;
+    @apply ml-10;
+    @apply mt-1;
+  }
+  a {
+    @apply underline;
+    @apply text-sky-500;
+    @apply hover:text-red;
+  }
+}

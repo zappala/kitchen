@@ -1,0 +1,34 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Tags from "../../../components/Tags.astro";
+
+import { getCollection } from "astro:content";
+
+export const prerender = true;
+
+const recipes = await getCollection("recipes");
+
+const tags = recipes
+  .map((recipe) => recipe.data.tags)
+  .flat()
+  .reduce<{ [key: string]: number }>(function (result, c) {
+    var count = result[c] || 0;
+    result[c] = count + 1;
+    return result;
+  }, {});
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return [...new Set(recipes.map((recipe) => recipe.data.tags).flat())].map(
+    (tag) => ({
+      params: { slug: tag },
+    })
+  );
+}
+---
+
+<Layout>
+  <section>
+    {(<Tags tags={tags} slug="" />)}
+  </section>
+</Layout>
