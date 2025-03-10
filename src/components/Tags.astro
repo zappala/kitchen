@@ -9,7 +9,7 @@ const { tags, slug } = Astro.props;
       .map(async ([tag, number]) => {
         if (tag == slug) {
           return (
-            <div class="border bg-blue-500 text-white px-5 py-2 rounded-full">
+            <div class="border bg-sky-300 px-5 py-2 rounded-full">
               {tag} ({number})
             </div>
           );
@@ -17,7 +17,7 @@ const { tags, slug } = Astro.props;
           return (
             <a
               class="no-underline text-default hover:no-underline hover:text-default"
-              href={`/recipes/tags/${tag}/`}
+              href={`/tags/${tag}/`}
             >
               <div class="border bg-gray-200 px-5 py-2 rounded-full ">
                 {tag} ({number})

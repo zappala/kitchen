@@ -5,7 +5,7 @@ import { useState } from "react";
 // https://fusejs.io/api/options.html
 const options = {
   // keys: ["frontmatter.title", "frontmatter.description", "frontmatter.slug"],
-  keys: ["data.title", "data.body", "slug"],
+  keys: ["data.title", "data.body", "id"],
 
   includeMatches: true,
   minMatchCharLength: 3,
@@ -83,10 +83,10 @@ function Search({ searchList }) {
       <ul className="list-none">
         {posts &&
           posts.map((post, index) => (
-            <li className="py-2" key={index}>
+            <li className="py-0" key={index}>
               <a
-                className="text-lg text-blue-700 hover:text-blue-900 hover:underline underline-offset-2"
-                href={`/recipes/${post.slug}`}
+                className="text-lg underline-offset-2"
+                href={`/recipes/${post.id}`}
               >
                 {post.data.title}
               </a>

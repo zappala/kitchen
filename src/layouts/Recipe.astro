@@ -2,11 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
 
-import FormattedDate from "../components/FormattedDate.astro";
-
 type Props = CollectionEntry<"recipes">["data"];
 
-const { title, body, date, image } = Astro.props;
+const { title, image } = Astro.props;
 ---
 
 <Layout>

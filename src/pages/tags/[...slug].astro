@@ -1,8 +1,8 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Tags from "../../../components/Tags.astro";
+import Layout from "../../layouts/Layout.astro";
+import Tags from "../../components/Tags.astro";
 
-import { getCollection } from "astro:content";
+import { getCollection, getEntries } from "astro:content";
 
 export const prerender = true;
 const { slug } = Astro.params;
@@ -34,6 +34,30 @@ if (!slug) {
 const allRecipesWithTag = await getCollection("recipes", (recipe) =>
   recipe.data.tags.some((tag) => tag === slug)
 );
+
+const sortRecipes = (recipes) => {
+  recipes.sort((a, b) => {
+    const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+
+    // names must be equal
+    return 0;
+  });
+};
+
+const entries = allRecipesWithTag.map((post) => ({
+  id: post.id,
+  title: post.data.title,
+}));
+
+sortRecipes(entries);
+
 if (allRecipesWithTag.length === 0) {
   return Astro.redirect("/404");
 }
@@ -46,23 +70,18 @@ if (allRecipesWithTag.length === 0) {
       {slug} recipes
     </h1>
 
-    <div
-      class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 items-start auto-rows-min mt-4"
-    >
+    <ul>
       {
-        allRecipesWithTag.map(async (post, i) => {
-          const { remarkPluginFrontmatter } = await post.render();
-
+        entries.map((post) => {
           return (
-            <a class="no-underline relative" href={`/recipes/${post.slug}/`}>
-              <img src={post.data.image} alt="" />
-              <h4 class="w-full opacity-80 z-10 py-2 bg-white text-default text-center text-lg">
-                {post.data.title}
-              </h4>
-            </a>
+            <li>
+              <a class="relative" href={`/recipes/${post.id}/`}>
+                {post.title}
+              </a>
+            </li>
           );
         })
       }
-    </div>
+    </ul>
   </section>
 </Layout>
