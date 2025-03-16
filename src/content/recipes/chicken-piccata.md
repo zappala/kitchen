@@ -8,7 +8,7 @@ site: https://www.recipetineats.com/chicken-piccata/
 
 I'm a huge fan of [Nagi](https://www.recipetineats.com/nagi-recipetin-eats/) and
 her [RecipeTin Eats](https://www.recipetineats.com/) blog. She has a wonderful
-[chicken piccata recipe](https://www.recipetineats.com/chicken-piccata/).
+chicken piccata recipe.
 
 Makes 3 or 4 servings. Once you get the hang of it, this is an easy recipe to
 scale up or down.

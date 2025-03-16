@@ -1,10 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
+import Badge from "../components/Badge.astro";
 
 type Props = CollectionEntry<"recipes">["data"];
 
-const { title, image } = Astro.props;
+const { title, image, site } = Astro.props;
 ---
 
 <Layout>
@@ -14,12 +15,12 @@ const { title, image } = Astro.props;
     </div>
     <div class="prose">
       <div class="title">
-        <div class="date">
-          <!-- <FormattedDate date={date} /> -->
-        </div>
         <h1>{title}</h1>
         <hr />
       </div>
+
+      {site && <Badge site={site} />}
+
       <slot />
     </div>
   </article>

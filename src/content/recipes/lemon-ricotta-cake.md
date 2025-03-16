@@ -8,7 +8,7 @@ site: https://thisitaliankitchen.com/italian-lemon-ricotta-cake/
 
 This is a wonderful, light cake from
 [Angela Allison](https://thisdelicioushouse.com/make-ahead-recipes/) at
-[This Italian Kitchen](https://thisitaliankitchen.com/italian-lemon-ricotta-cake/).
+[This Italian Kitchen](https://thisitaliankitchen.com).
 
 Note: for a good rise, make sure your baking soda is fresh.
 

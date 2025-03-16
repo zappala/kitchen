@@ -1,6 +1,6 @@
 ---
 title: Chocolate Chip Cookies
-date: "March 2 2015"
+date: "March 2 2025"
 tags:
   - dessert
 site: https://cookiesfordays.com/chocolate-chip-cookie-recipe/
@@ -8,9 +8,7 @@ site: https://cookiesfordays.com/chocolate-chip-cookie-recipe/
 
 This recipe from [Karli](https://cookingwithkarli.com/about-me/) uses a whole
 tablespoon of vanilla extract and makes a great cookie. The original recipe is
-at her
-[Cookies for Days](https://cookiesfordays.com/chocolate-chip-cookie-recipe/)
-website.
+at her [Cookies for Days](https://cookiesfordays.com/) website.
 
 The recipe officially makes 30 cookies but I always come up short. For me, this
 makes about 2 dozen cookies.
