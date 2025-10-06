@@ -3,6 +3,7 @@ title: Quiche
 date: "Oct 5, 2025"
 tags:
   - breakfast
+image: /images/quiche.jpeg
 site: https://www.simplyrecipes.com/recipes/quiche_lorraine/
 ---
 
